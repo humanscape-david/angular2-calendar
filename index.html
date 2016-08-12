@@ -1,0 +1,34 @@
+<!--
+es6-shim: 브라우저에서 지원하지 않는 es6 기능 지원을 위한 스크립트
+zone.js: Angular2 에서 이벤트 detecet를 위해 사용하는 필수 라이브러리
+Reflect.js: Angular2 에서 사용하는 @(데코레이터)를 위한 필수 라이브러리 ex) @component
+System.js: Angluar2 모듈 로더. 우리가 app 폴더 하위에 작성한 Angular2 앱 모듈을 브라우저에서 실제 로딩하기 위한 툴
+TODO: System.js 이는 간단한 예제용으로 추후에 webpack으로 바꾸어준다.
+-->
+<html>
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="app/static/css/style.css">
+ 
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+ 
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+ 
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err);  });
+    </script>
+  </head>
+ 
+  <!-- 3. Display the application -->
+  <body>
+    <angular2-calendar>Loading...</angular2-calendar>
+  </body>
+</html>
