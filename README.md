@@ -3,6 +3,6 @@ Angular2 calendar
 
 TODO
 
-* CRUD calendar
+* CRUD
 
 * Real time
