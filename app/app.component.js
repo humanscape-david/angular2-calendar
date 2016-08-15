@@ -16,7 +16,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'angular2-calendar',
-            template: '<h1>Hello Angular2 Calendar</h1>'
+            templateUrl: 'app/template/app.component.html'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
