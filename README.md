@@ -6,3 +6,7 @@ TODO
 * CRUD
 
 * Real time
+
+Directory Structure
+
+* https://mgechev.github.io/angular2-seed/
