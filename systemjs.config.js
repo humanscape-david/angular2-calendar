@@ -13,14 +13,15 @@ systemjs.config.js 파일의 내용을 보면 결국 사용할 패키지 선언�
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
-    'monment':                    'node_modules/monment',
-    'lodash':                     'node_modules/lodash/lodash.js'
+    'moment':                     'node_modules/moment',
+    'lodash':                     'node_modules/lodash'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
-    'rxjs':                       { defaultExtension: 'js' },
+    'rxjs':                       { main:'Rx.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'moment':                     { main:'moment.js', defaultExtension:'js'},
     'lodash':                     { main:'index.js', defaultExtension:'js'}
   };
   var ngPackageNames = [
