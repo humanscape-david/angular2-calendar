@@ -11,6 +11,7 @@ systemjs.config.js 파일의 내용을 보면 결국 사용할 패키지 선언�
   var map = {
     'app':                        'src/client/app', // 'dist',
     '@angular':                   'node_modules/@angular',
+    '@ngrx':                      'node_modules/@ngrx/store',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
     'moment':                     'node_modules/moment',
@@ -20,6 +21,7 @@ systemjs.config.js 파일의 내용을 보면 결국 사용할 패키지 선언�
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { main:'Rx.js', defaultExtension: 'js' },
+    '@ngrx':                      { main:'index.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
     'moment':                     { main:'moment.js', defaultExtension:'js'},
     'lodash':                     { main:'index.js', defaultExtension:'js'}

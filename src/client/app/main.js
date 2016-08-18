@@ -6,7 +6,7 @@ import의 출처를 보면 ‘@angular/platform-browser-dynamic’으로 되어 
 즉  bootstrap될 환경에 따라 다른 bootsrap 메서드를 import할 수가 있습니다.
 예를 들면, 현재 Angular2는 네이티브 앱 및 서버 렌더링까지 지원을 가지고 있습니다.
 */
-var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
+var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
 var app_component_1 = require('./app.component');
 platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent);
 //# sourceMappingURL=main.js.map
