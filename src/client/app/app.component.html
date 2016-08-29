@@ -13,6 +13,8 @@
         </tr>
     </thead>
     <tbody>
+        <div>
+        </div>
         <tr *ngFor="let week of weeks$|async; trackBy tracker">
             <td *ngFor="let day of week; trackBy tracker">
                 <day-detail *ngIf="day" [dayWithAppointments]="day"
