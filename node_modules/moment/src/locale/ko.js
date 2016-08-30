@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : Korean [ko]
+//! locale : korean (ko)
 //!
 //! authors
 //!

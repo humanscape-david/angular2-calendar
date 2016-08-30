@@ -8,21 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var router_deprecated_1 = require("@angular/router-deprecated");
+var calendar_container_1 = require("./calendar/calendar.container");
 var AppComponent = (function () {
     function AppComponent() {
     }
-    // component에서는 ajax로 가져온 데이터를 가공하여 뷰에 노출한다거나,
-    // 사용자의 액션을 처리할 이벤트를 등록로직을 메소드 형태로 구현.
-    AppComponent.prototype.ngOnInit = function () {
-    };
-    AppComponent.prototype.ngOnDestroy = function () {
-    };
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'angular2-calendar',
-            templateUrl: 'src/client/app/app.component.html'
-        }), 
+            selector: "angular2-calendar",
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, calendar_container_1.Calendar],
+            template: "\n        <router-outlet></router-outlet>\n    "
+        }),
+        router_deprecated_1.RouteConfig([
+            { path: "/", name: "Root", redirectTo: ["Calendar"] },
+            { path: "/calendar", name: "Calendar", component: calendar_container_1.Calendar }
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : Galician [gl]
+//! locale : galician (gl)
 //! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 import moment from '../moment';

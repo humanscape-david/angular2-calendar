@@ -11,7 +11,7 @@ TODO: System.js 이는 간단한 예제용으로 추후에 webpack으로 바꾸�
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="src/client/css/style.css">
- 
+  
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
@@ -23,7 +23,7 @@ TODO: System.js 이는 간단한 예제용으로 추후에 webpack으로 바꾸�
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err);  });
+      System.import('app').catch(function(err){ console.log(err); });
     </script>
 
     <!-- 3. Add Script
