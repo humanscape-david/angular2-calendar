@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_deprecated_1 = require("@angular/router-deprecated");
 var calendar_container_1 = require("./calendar/calendar.container");
+var jake_container_1 = require("./jake/jake.container");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -22,7 +23,8 @@ var AppComponent = (function () {
         }),
         router_deprecated_1.RouteConfig([
             { path: "/", name: "Root", redirectTo: ["Calendar"] },
-            { path: "/calendar", name: "Calendar", component: calendar_container_1.Calendar }
+            { path: "/calendar", name: "Calendar", component: calendar_container_1.Calendar },
+            { path: "/jake", name: "Jake", component: jake_container_1.Jake }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {Calendar} from "./calendar/calendar.container";
+import {Jake} from "./jake/jake.container";
 @Component({
     selector: "angular2-calendar",
     directives: [ROUTER_DIRECTIVES, Calendar],
@@ -12,6 +13,7 @@ import {Calendar} from "./calendar/calendar.container";
 @RouteConfig([
     {path: "/", name: "Root", redirectTo: ["Calendar"]},
     {path: "/calendar", name: "Calendar", component: Calendar}
+    {path: "/jake", name: "Jake", component: Jake}
 ])
 
 // AppComponent라는 클레스를 생성하고 외부에 공개한다라는 의미.
