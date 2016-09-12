@@ -12,12 +12,12 @@ import {Jake} from "./jake/jake.container";
 })
 @RouteConfig([
     {path: "/", name: "Root", redirectTo: ["Calendar"]},
-    {path: "/calendar", name: "Calendar", component: Calendar}
+    {path: "/calendar", name: "Calendar", component: Calendar},
     {path: "/jake", name: "Jake", component: Jake}
 ])
 
 // AppComponent라는 클레스를 생성하고 외부에 공개한다라는 의미.
 export class AppComponent {
-	// component에서는 ajax로 가져온 데이터를 가공하여 뷰에 노출한다거나,
-  // 사용자의 액션을 처리할 이벤트를 등록로직을 메소드 형태로 구현.
+    // component에서는 ajax로 가져온 데이터를 가공하여 뷰에 노출한다거나,
+    // 사용자의 액션을 처리할 이벤트를 등록로직을 메소드 형태로 구현.
 }

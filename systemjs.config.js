@@ -9,6 +9,7 @@
   var map = {
     'app':                        'src/client/app', // 'dist',
     '@angular':                   'node_modules/@angular',
+    '@ngrx/core':                 'node_modules/@ngrx/core',
     '@ngrx/store':                'node_modules/@ngrx/store',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
@@ -19,6 +20,7 @@
   var packages = {
     'app':                        { main: 'index.js',  defaultExtension: 'js' },
     'rxjs':                       { main:'Rx.js', defaultExtension: 'js' },
+    '@ngrx/core':                 { main:'index.js', defaultExtension: 'js' },
     '@ngrx/store':                { main:'index.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
     'moment':                     { main:'moment.js', defaultExtension:'js'},

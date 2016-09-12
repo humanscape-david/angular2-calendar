@@ -23,7 +23,7 @@ var lastDate = last[m];
 // theDay(빈 칸의 수), lastDate(월의 전체 일수)
 var row = Math.ceil((theDay+lastDate)/7);
 
-//문자 결합 연산자를 사용해 요일이 나오는 행을 생성합니다.
+// 문자 결합 연산자를 사용해 요일이 나오는 행을 생성합니다.
 var calendar = "<table class='calendar_table'>";
 
 // 달력에 표기되는 일의 초기값!

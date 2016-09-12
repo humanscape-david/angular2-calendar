@@ -7,7 +7,7 @@ import {AppointmentDetail} from "./appointment-detail.component";
     directives: [AppointmentDetail],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-        <table class="table table-striped">
+        <table class="table table-striped" (drop)="drop($event)" (dragover)="allowDrop($event)">
             <thead>
                 <tr>
                     <td>{{dayWithAppointments.day.day}}
@@ -15,18 +15,18 @@ import {AppointmentDetail} from "./appointment-detail.component";
                         <span class="label label-danger pull-right" *ngIf="dayWithAppointments.appointments.length > 0">Occupied</span>
                     </td>
                     <td>
-                        <button class="btn btn-block btn-sm btn-default" (click)="onAdd()"><i class="fa fa-plus-circle"></i></button>
+                        <button class="btn btn-block btn-sm btn-default" (click)="onAdd()">+</button>
                     </td>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let appointment of dayWithAppointments.appointments">
+                <tr *ngFor="let appointment of dayWithAppointments.appointments" draggable="true" (dragstart)="drag($event)">
                     <td>
                         <appointment-detail [appointment]="appointment" (remove)="removeAppointment.emit($event)" 
                         (update)="updateAppointment.emit($event)"></appointment-detail>
                     </td>
                     <td>
-                        <button class="btn btn-danger" (click)="removeAppointment.emit(appointment)"><i class="fa fa-trash-o"></i></button>
+                        <button class="btn btn-danger" (click)="removeAppointment.emit(appointment)">-</button>
                     </td>
                 </tr>
             </tbody>
@@ -40,7 +40,19 @@ export class DayDetail {
     @Output() public updateAppointment = new EventEmitter<Appointment>();
     @Output() public removeAppointment = new EventEmitter<Appointment>();
 
+    allowDrop = function(ev) {
+    ev.preventDefault();
+    }
 
+    drag = function(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    drop = function(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
     public onAdd(): void {
         let fakeDate = moment().year(this.dayWithAppointments.day.year).month(this.dayWithAppointments.day.month)
             .date(this.dayWithAppointments.day.day).hours(0).minutes(0);

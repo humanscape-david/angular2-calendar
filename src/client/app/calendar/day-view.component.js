@@ -16,6 +16,17 @@ var DayView = (function () {
         this.addAppointment = new core_1.EventEmitter();
         this.updateAppointment = new core_1.EventEmitter();
         this.removeAppointment = new core_1.EventEmitter();
+        this.allowDrop = function (ev) {
+            ev.preventDefault();
+        };
+        this.drag = function (ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        };
+        this.drop = function (ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        };
     }
     DayView.prototype.ngOnInit = function () {
     };
@@ -40,7 +51,7 @@ var DayView = (function () {
             selector: "day-view",
             directives: [day_detail_component_1.DayDetail],
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            template: "\n       <h1>Overview of day: {{day.day.day}}-{{day.day.month +1 }}-{{day.day.year}}</h1>\n       <day-detail *ngIf=\"day\" [dayWithAppointments]=\"day\"\n                            (addAppointment)=\"addAppointment.emit($event)\" (updateAppointment)=\"updateAppointment.emit($event)\"\n                            (removeAppointment)=\"removeAppointment.emit($event)\">\n       </day-detail>\n    "
+            template: "\n       <h1>Overview of day: {{day.day.day}}-{{day.day.month +1 }}-{{day.day.year}}</h1>\n       <day-detail *ngIf=\"day\" [dayWithAppointments]=\"day\"\n                            (addAppointment)=\"addAppointment.emit($event)\" (updateAppointment)=\"updateAppointment.emit($event)\"\n                            (removeAppointment)=\"removeAppointment.emit($event)\">\n       </day-detail>\n       \n        <div id=\"div1\" class=\"container\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n            <img id=\"drag1\" src=\"https://s3.amazonaws.com/delivia-static/v2.0.0/snsf.png\" draggable=\"true\" (dragstart)=\"drag($event)\" width=\"90\" height=\"69\">\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], DayView);

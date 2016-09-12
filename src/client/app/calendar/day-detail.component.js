@@ -17,6 +17,17 @@ var DayDetail = (function () {
         this.addAppointment = new core_1.EventEmitter();
         this.updateAppointment = new core_1.EventEmitter();
         this.removeAppointment = new core_1.EventEmitter();
+        this.allowDrop = function (ev) {
+            ev.preventDefault();
+        };
+        this.drag = function (ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        };
+        this.drop = function (ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        };
     }
     DayDetail.prototype.onAdd = function () {
         var fakeDate = moment().year(this.dayWithAppointments.day.year).month(this.dayWithAppointments.day.month)
@@ -44,7 +55,7 @@ var DayDetail = (function () {
             selector: "day-detail",
             directives: [appointment_detail_component_1.AppointmentDetail],
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            template: "\n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <td>{{dayWithAppointments.day.day}}\n                        <span class=\"label label-success pull-right\" *ngIf=\"dayWithAppointments.appointments.length === 0\">Free</span>\n                        <span class=\"label label-danger pull-right\" *ngIf=\"dayWithAppointments.appointments.length > 0\">Occupied</span>\n                    </td>\n                    <td>\n                        <button class=\"btn btn-block btn-sm btn-default\" (click)=\"onAdd()\"><i class=\"fa fa-plus-circle\"></i></button>\n                    </td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let appointment of dayWithAppointments.appointments\">\n                    <td>\n                        <appointment-detail [appointment]=\"appointment\" (remove)=\"removeAppointment.emit($event)\" \n                        (update)=\"updateAppointment.emit($event)\"></appointment-detail>\n                    </td>\n                    <td>\n                        <button class=\"btn btn-danger\" (click)=\"removeAppointment.emit(appointment)\"><i class=\"fa fa-trash-o\"></i></button>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    "
+            template: "\n        <table class=\"table table-striped\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n            <thead>\n                <tr>\n                    <td>{{dayWithAppointments.day.day}}\n                        <span class=\"label label-success pull-right\" *ngIf=\"dayWithAppointments.appointments.length === 0\">Free</span>\n                        <span class=\"label label-danger pull-right\" *ngIf=\"dayWithAppointments.appointments.length > 0\">Occupied</span>\n                    </td>\n                    <td>\n                        <button class=\"btn btn-block btn-sm btn-default\" (click)=\"onAdd()\">+</button>\n                    </td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let appointment of dayWithAppointments.appointments\" draggable=\"true\" (dragstart)=\"drag($event)\">\n                    <td>\n                        <appointment-detail [appointment]=\"appointment\" (remove)=\"removeAppointment.emit($event)\" \n                        (update)=\"updateAppointment.emit($event)\"></appointment-detail>\n                    </td>\n                    <td>\n                        <button class=\"btn btn-danger\" (click)=\"removeAppointment.emit(appointment)\">-</button>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], DayDetail);

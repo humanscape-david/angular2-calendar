@@ -18,6 +18,17 @@ var MonthView = (function () {
         this.addAppointment = new core_1.EventEmitter();
         this.updateAppointment = new core_1.EventEmitter();
         this.removeAppointment = new core_1.EventEmitter();
+        this.allowDrop = function (ev) {
+            ev.preventDefault();
+        };
+        this.drag = function (ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        };
+        this.drop = function (ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        };
         this.subscriptions = [];
     }
     MonthView.prototype.tracker = function (index) {
@@ -89,7 +100,7 @@ var MonthView = (function () {
             selector: "month-view",
             directives: [day_detail_component_1.DayDetail],
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            template: "\n        <h1>Overview of: {{formattedMonth$|async}}</h1>\n        \n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <th>Sunday</th>\n                    <th>Monday</th>\n                    <th>Tuesday</th>\n                    <th>Wednesday</th>\n                    <th>Thursday</th>\n                    <th>Friday</th>\n                    <th>Saturday</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let week of weeks$|async; trackBy tracker\">\n                    <td *ngFor=\"let day of week; trackBy tracker\">\n                        <day-detail *ngIf=\"day\" [dayWithAppointments]=\"day\"\n                            (addAppointment)=\"addAppointment.emit($event)\" (updateAppointment)=\"updateAppointment.emit($event)\"\n                            (removeAppointment)=\"removeAppointment.emit($event)\">\n                        </day-detail>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    "
+            template: "\n        <h1>Overview of: {{formattedMonth$|async}}</h1>\n        \n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <th>Sunday</th>\n                    <th>Monday</th>\n                    <th>Tuesday</th>\n                    <th>Wednesday</th>\n                    <th>Thursday</th>\n                    <th>Friday</th>\n                    <th>Saturday</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let week of weeks$|async; trackBy tracker\">\n                    <td *ngFor=\"let day of week; trackBy tracker\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n                        <day-detail *ngIf=\"day\" [dayWithAppointments]=\"day\"\n                            (addAppointment)=\"addAppointment.emit($event)\" (updateAppointment)=\"updateAppointment.emit($event)\"\n                            (removeAppointment)=\"removeAppointment.emit($event)\">\n                        </day-detail>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n\n        <div id=\"div1\" class=\"container\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n            <img id=\"drag1\" src=\"https://s3.amazonaws.com/delivia-static/v2.0.0/snsf.png\" draggable=\"true\" (dragstart)=\"drag($event)\" width=\"90\" height=\"69\">\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MonthView);
